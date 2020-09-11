@@ -92,9 +92,80 @@ void SingleLL::InsertAtPosition(int data, int pos){
     
 }
 
-int SingleLL::DeleteAtLast(){ return -1;}
-int SingleLL::DeleteAtBeg(){return -1;}
-int SingleLL::DeleteAtPosition(int pos){return -1;}
+int SingleLL::DeleteAtLast(){ 
+     if(head == nullptr)
+    {
+        std::cout<<"Nothing to delete!"<<std::endl;
+        return -1;
+    }
+    if(length == 1)
+    {
+        int d = head->getData();
+        delete(head);
+        length=0;
+        return d;
+    }
+    auto temp = head;
+        
+    for(int i=0; i < (length-2) ; i++)
+    {
+        temp = temp->getNext();
+    }
+    auto last = temp->getNext();
+    int d = last->getData();
+    temp->setNext(nullptr);
+    delete(last);
+    length--;
+    return d;
+    
+}
+int SingleLL::DeleteAtBeg(){
+    if(length == 0)
+    {
+        std::cout<<"Nothing to delete!"<<std::endl;
+        return -1;
+    }
+    if(length == 1)
+    {
+        int d = head->getData();
+        delete(head);
+        length=0;
+        return d;
+    }
+    auto temp = head;
+    head = head->getNext();
+    int d = temp->getData();
+    temp->setNext(nullptr);
+    length --;
+    delete(temp);
+    return d;
+}
+int SingleLL::DeleteAtPosition(int pos){
+    if(length == 0)
+    {
+        std::cout<<"Nothing to delete!"<<std::endl;
+        return -1;
+    }
+    if(pos == 1)
+        return DeleteAtBeg();
+    if(pos == length)
+        return DeleteAtLast();
+    
+    auto temp = head;
+    auto prev = head;
+    for(int i = 1; i < pos ;i++)
+    {
+        prev = temp;
+        temp = temp->getNext();
+    }
+    prev->setNext(temp->getNext());
+    int d = temp->getData();
+    temp->setNext(nullptr);
+    delete(temp);
+    length--;
+    return d;
+
+}
     
 void SingleLL::printList(){
     auto temp =head;
