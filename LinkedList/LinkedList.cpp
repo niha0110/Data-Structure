@@ -24,4 +24,37 @@ int main()
 
     std::cout<<"All list"<<std::endl;
     sll.printList();
+
+    SingleLL sll1;
+    sll1.InsertAtBeg(5);
+    sll1.InsertAtBeg(4);
+    sll1.InsertAtBeg(3);
+    sll1.InsertAtBeg(2);
+    sll1.InsertAtBeg(1);
+
+    std::cout<<"Second List:"<<std::endl;
+    sll1.printList();
+
+    sll1.searchNthFromEnd(2);
+    sll1.searchNthFromEnd(3);
+    sll1.searchNthFromEnd(4);
+
+    sll1.ReverseList();
+    sll1.printList();
+
+    SingleLL sll2;
+    sll2.InsertAtBeg(5);
+    sll2.InsertAtBeg(4);
+    sll2.InsertAtBeg(3);
+    sll2.InsertAtBeg(2);
+    sll2.InsertAtBeg(1);
+
+    sll2.MakeitCircular();
+    auto head2 = sll2.SplitCList();
+    std::cout<<"List1:\n";
+    sll2.printCircular();
+    std::cout<<"List2:\n";
+    sll2.printCircular(head2);
+
+
 }

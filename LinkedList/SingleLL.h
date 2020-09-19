@@ -31,5 +31,9 @@ class SingleLL
     
     void printList();
     void searchPosition(int pos);
-    void searchData(int data);
+    void MakeitCircular();
+    void searchNthFromEnd(int n);
+    void ReverseList();
+    SNode * SplitCList();
+    void printCircular(SNode *h = nullptr);
 };

@@ -175,4 +175,102 @@ void SingleLL::printList(){
         temp = temp->getNext(); 
     }
 }
-void SingleLL::searchData(int data){}
+void SingleLL::searchNthFromEnd(int n){
+    auto temp = head;
+    auto nth = head;
+    int i = 0;
+    while(temp!= nullptr)
+    {
+        if(n <= i)
+            nth = nth->getNext();
+        temp = temp->getNext();
+        i++;
+    }
+
+    std::cout<<n<<"th node from end: "<<nth->getData() <<std::endl;
+}
+void SingleLL::MakeitCircular(){
+    auto temp = head;
+    while(temp->getNext()!= nullptr)
+    {
+        temp = temp->getNext();
+    }
+
+    temp->setNext(head);
+}
+
+void SingleLL::ReverseList()
+{
+    SNode *ptr1, *ptr2, *ptr3;
+    ptr1=head;
+    ptr2 = head->getNext();
+    ptr3 = ptr2->getNext();
+
+    while(ptr2 != nullptr)
+    {
+        ptr2->setNext(ptr1);
+        ptr1=ptr2;
+        ptr2=ptr3;
+        if(ptr3 != nullptr)
+            ptr3 = ptr3->getNext();
+    }
+
+    head = ptr1;
+
+}
+
+SNode* SingleLL::SplitCList()
+{
+    SNode *slowptr, *fastptr;
+
+    slowptr = fastptr = head;
+
+    if(head == nullptr)
+        return nullptr;
+
+    while(fastptr->getNext()->getNext() != head && fastptr->getNext() != head)
+    {
+        fastptr = fastptr->getNext()->getNext();
+        slowptr = slowptr->getNext();
+    }
+    
+    if(fastptr == head)
+        return nullptr;
+    else
+    {
+        auto head2 = slowptr->getNext();
+        slowptr->setNext(head);
+        if(fastptr->getNext() != head)
+        {
+            fastptr=fastptr->getNext();
+        }
+        fastptr->setNext(head2);
+        return head2;
+    }
+    
+}
+
+void SingleLL::printCircular(SNode *h)
+{
+    if(h == nullptr)
+    {
+        auto temp = head;
+        while(temp->getNext() != head)
+        {
+            std::cout<<temp->getData()<<std::endl;
+            temp = temp->getNext();
+        }
+        std::cout<<temp->getData()<<std::endl;
+    }
+    else
+    {
+        auto temp = h;
+        while(temp->getNext() != h)
+        {
+              std::cout<<temp->getData()<<std::endl;
+            temp = temp->getNext();
+        }
+        std::cout<<temp->getData()<<std::endl;
+    }
+    
+}
